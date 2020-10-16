@@ -12,8 +12,10 @@
 		var isCopy = window.location.href.split("?par=")[2]
 		alert(prodId);
 		alert(isCopy);
+		var URL= 'http://localhost:8080/api/ticket/show/'+prodId+'/'+isCopy;
+		alert(URL);
 		var req = new XMLHttpRequest();
-		req.open('GET', 'http://localhost:8080/api/ticket/show/'+prodId+'/'+isCopy, true);
+		req.open('GET',URL, true);
 		req.onreadystatechange = function (aEvt) {
 		  if (req.readyState == 4) {
 			 if(req.status == 200){			  

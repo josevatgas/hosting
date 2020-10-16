@@ -10,21 +10,29 @@
 	<script>
 		var prodId = window.location.href.split("?par=")[1]
 		var isCopy = window.location.href.split("?par=")[2]
-		alert(prodId);
-		alert(isCopy);
-		var URL= 'http://localhost:8080/api/ticket/show/'+prodId+'/'+isCopy;
-		alert(URL);
-		var req = new XMLHttpRequest();
-		req.open('GET',URL, true);
-		req.onreadystatechange = function (aEvt) {
-		  if (req.readyState == 4) {
-			 if(req.status == 200){			  
-			  document.write(req.responseText);
-			 }else
-			  alert("No es posible consultar la Tirilla");
-		  }
-		};
-		req.send(null); 		
+		var request;
+		request.transactionId = prodId;
+		request.isCopy = isCopy;
+		let URL = `http://localhost:8080/api/ticket/show`;
+		var data = JSON.stringify(request);
+		alert (data);
+		const api = new XMLHttpRequest();
+		api.open('POST', URL, true);
+		api.setRequestHeader("Content-Type", "application/json");
+        api.send(data);
+		
+		api.onreadystatechange = function () {
+                                if (this.status === 200) {
+                                    let response = JSON.parse(this.responseText);
+                                    if (response !== null) {
+                                        document.write(this.responseText);
+                                    } else {
+                                        alert("No es posible consultar la Tirilla");
+                                    }
+                                } else {
+                                    alert("No es posible consultar la Tirilla");
+                                }
+                            }		
 		
 	</script>
 </html>

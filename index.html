@@ -10,22 +10,27 @@
 	<script>
 		var prodId = window.location.href.split("?par=")[1]
 		var isCopy = window.location.href.split("?par=")[2]
-		var request;
+		//alert (prodId);
+		//alert (isCopy);
+		var request={};	
+		var imprimio = true;		
 		request.transactionId = prodId;
 		request.isCopy = isCopy;
 		let URL = `http://localhost:8080/api/ticket/show`;
 		var data = JSON.stringify(request);
-		alert (data);
+		//alert (data);
 		const api = new XMLHttpRequest();
 		api.open('POST', URL, true);
 		api.setRequestHeader("Content-Type", "application/json");
-        api.send(data);
-		
+        api.send(data);		
 		api.onreadystatechange = function () {
-                                if (this.status === 200) {
-                                    let response = JSON.parse(this.responseText);
-                                    if (response !== null) {
-                                        document.write(this.responseText);
+                                if (this.status === 200) {						
+                                    if (api.responseText !== null) {
+										if(imprimio && api.responseText){
+											document.write(api.responseText);
+											imprimio = false;
+										}
+										
                                     } else {
                                         alert("No es posible consultar la Tirilla");
                                     }

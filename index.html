@@ -11,7 +11,7 @@
 		var prodId = window.location.href.split("?par=")[1]
 		var isCopy = window.location.href.split("?par=")[2]
 		var req = new XMLHttpRequest();
-		req.open('GET', 'http://localhost:8080/api/ticket/show/070986/true', true);
+		req.open('GET', 'http://localhost:8080/api/ticket/show/'+prodId+'/'+isCopy, true);
 		req.onreadystatechange = function (aEvt) {
 		  if (req.readyState == 4) {
 			 if(req.status == 200){			  

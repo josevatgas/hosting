@@ -10,6 +10,8 @@
 	<script>
 		var prodId = window.location.href.split("?par=")[1]
 		var isCopy = window.location.href.split("?par=")[2]
+		alert(prodId);
+		alert(isCopy);
 		var req = new XMLHttpRequest();
 		req.open('GET', 'http://localhost:8080/api/ticket/show/'+prodId+'/'+isCopy, true);
 		req.onreadystatechange = function (aEvt) {

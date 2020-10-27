@@ -8,14 +8,12 @@
 	<script type="text/javascript" src="html2canvas.js"></script>
 	<script type="text/javascript" src="jspdf.min.js"></script>
 	<script>
-		var prodId = window.location.href.split("?par=")[1]
-		var isCopy = window.location.href.split("?par=")[2]
+		var encryptedData = window.location.href.split("?par=")[1]
 		//alert (prodId);
 		//alert (isCopy);
 		var request={};	
 		var imprimio = true;		
-		request.transactionId = prodId;
-		request.isCopy = isCopy;
+		request.encryptedData = encryptedData;
 		let URL = `http://localhost:8080/api/ticket/show`;
 		var data = JSON.stringify(request);
 		//alert (data);
